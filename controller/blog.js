@@ -20,7 +20,7 @@ exports.createBlog = async (req, res) => {
 
     const newBlogResponce = await blog.create({
       title,
-      tags:NewTags,
+      tags: NewTags,
       content,
       image: imageResponce.secure_url,
     });
@@ -32,9 +32,27 @@ exports.createBlog = async (req, res) => {
     });
   } catch (error) {
     return res.status(401).json({
-        success:false,
-        error:error.message,
-        message:"Blog not created successfully"
+      success: false,
+      error: error.message,
+      message: "Blog not created successfully",
+    });
+  }
+};
+
+exports.getBlogs = async (req, res) => {
+  try {
+    console.log("Req params",req.params);
+    const responce = await blog.find();
+    return res.status(200).json({
+      success: true,
+      data: responce,
+      message: "Blog get successfully",
+    });
+  } catch (error) {
+    return res.status(401).json({
+      success:false,
+      data:error.message,
+      message:"blog not get successfully",
     })
   }
 };
