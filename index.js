@@ -19,6 +19,10 @@ app.use(expressFileUpload({
 app.listen(port,()=>{
     console.log(`App Is Started Port ${port}`)
 })
+
+app.get((req,res)=>{
+    return res.send("Your server is up and running ");
+})
 app.use("/api/v1",userRoutes);
 app.use("/api/v1",blogRoutes);
 dbConnect();
