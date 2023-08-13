@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config();
 exports.auth = async (req,res,next) => {
     try {
-        const token = req?.header("Authorization")?.replce("Bearer ","") || req.cookies.token ;
+        const token = req?.header["Authorization"]?.replce("Bearer ","") || req.cookies.token ;
 
     if(!token)
     {
