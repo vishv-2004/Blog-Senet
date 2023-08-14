@@ -56,3 +56,40 @@ exports.getBlogs = async (req, res) => {
     })
   }
 };
+
+exports.getSingleBlog =async(req,res)=>{
+   try {
+    const {id} = req.body;
+
+    if(!id)
+    {
+      return res.status(401).json({
+        success:false,
+        message:"id not found"
+      })
+    }
+
+    const blogResponse = await blog.findById(id);
+
+    if(!blogResponse)
+    {
+      return res.status(401).json({
+        success:false,
+        message:"blog not found"
+      })
+    }
+
+    return res.status(200).json({
+      success:true,
+      data:blogResponse,
+      message:"blog get successfully",
+    })
+   } catch (error) {
+    return res.status(401).json({
+      success:false,
+      data:error,
+      message:"blog not get successfully"
+    })
+   }
+
+}
