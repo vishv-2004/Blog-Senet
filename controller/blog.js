@@ -57,7 +57,7 @@ exports.getBlogs = async (req, res) => {
   }
 };
 
-exports.getSingleBlog =async(req,res)=>{
+exports.getBlogById =async(req,res)=>{
    try {
     const {id} = req.body;
 
